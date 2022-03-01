@@ -1,3 +1,3 @@
-# typescript-login-app
+#  Jquery (widjet) - in Vanilla JavaScript
 
-## Demo version - https://cocky-sammet-d1a702.netlify.app/
+## Demo version - https://pedantic-kare-93cdf9.netlify.app/
