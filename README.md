@@ -1,3 +1,3 @@
 #  Jquery (widjet) - in Vanilla JavaScript
 
-## Demo version - https://upbeat-sammet-4bfdc3.netlify.app
+## Demo version - https://pensive-wescoff-347dc3.netlify.app
