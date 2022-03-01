@@ -13,6 +13,11 @@ template.innerHTML = `
       background: #fff;
       box-shadow: 2px 1px 10px rgb(139, 139, 139);
       padding: 0;
+      z-index: 9999;
+
+      max-height: 300px;
+      overflov: hidden;
+      overflow-y: scroll;
     }
 
     .list-item {
