@@ -1,3 +1,7 @@
+import service from '../service/Service'
+import state from '../state/State'
+import List from './List'
+
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -29,6 +33,7 @@ class Input extends HTMLElement {
 
 		this.shadowRoot.querySelector('input').placeholder =
 			this.getAttribute('placeholder')
+		this.shadowRoot.querySelector('input').value = this.getAttribute('value')
 
 		this.shadowRoot.querySelector('input').name = this.getAttribute('name')
 		this.shadowRoot.querySelector('input').id = this.getAttribute('id')
@@ -43,8 +48,12 @@ class Input extends HTMLElement {
 
 	onChange(e) {
 		const value = e.target.value
-
-		console.log(value)
+		service.getData(value).then((res) => {
+			state.setState({
+				results: res.suggestions,
+				value,
+			})
+		})
 	}
 
 	connectedCallback() {
@@ -53,9 +62,21 @@ class Input extends HTMLElement {
 			.addEventListener('input', this.onChange)
 	}
 
+	static get observedAttributes() {
+		return ['value']
+	}
+
 	disconnectedCallback() {
 		this.shadowRoot.querySelector('input').removeEventListener()
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name == 'value') {
+			this.shadowRoot.querySelector('input').value = newValue
+		}
 	}
 }
 
 window.customElements.define('custom-input', Input)
+
+export default new Input()

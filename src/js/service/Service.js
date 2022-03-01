@@ -18,7 +18,6 @@ class Service {
 
 		return await res.json()
 	}
-	s
 
 	getByKPP(kpp) {
 		const res = state.getState().results.find((item) => item.data.kpp === kpp)

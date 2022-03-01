@@ -1,48 +1,37 @@
 import '../css/style.css'
 
-import userCard from './views/userCard'
-
+import Input from './views/Input'
+import './views/userCard'
+import './views/List'
 import state from './state/State'
-import service from './service/Service'
-import resList from './views/ResList'
-import input from './views/Input'
 
-const search = document.getElementById('search')
-const shirtName = document.getElementById('name_short')
-const fullName = document.getElementById('name_full')
-const innKpp = document.getElementById('inn_kpp')
-const address = document.getElementById('address')
+window.addEventListener('DOMContentLoaded', () => {
+	const search = document.getElementById('search')
+	const shortName = document.getElementById('name_short')
+	const fullName = document.getElementById('name_full')
+	const innKpp = document.getElementById('inn_kpp')
+	const address = document.getElementById('address')
 
-const searchHandler = async (e) => {
-	e.preventDefault()
+	console.log(Input.shadowRoot.querySelector('input'))
 
-	const value = e.target.value
+	state.addListener(() => {
+		const { result } = state.getState()
 
-	const data = await service.getData(value)
+		if (result?.value) {
+			search.setAttribute('value', result?.value)
+		}
 
-	state.setState({
-		results: data.suggestions,
-		value,
+		shortName.setAttribute('value', result?.value || '')
+		fullName.setAttribute('value', result?.data?.name?.full_with_opf || '')
+		address.setAttribute('value', result?.data?.address?.value || '')
+
+		if (result?.data?.kpp && result?.data?.inn) {
+			innKpp.setAttribute(
+				'value',
+				`${result?.data?.kpp} / ${result?.data?.inn}`,
+			)
+		} else {
+			innKpp.setAttribute('value', '')
+		}
 	})
-
-	const { results } = state.getState()
-
-	resList.renderList(results)
-}
-
-search.addEventListener('input', searchHandler)
-
-state.addListener(() => {
-	const { result } = state.getState()
-
-	search.value = result?.value || search.value
-	shirtName.value = result?.value || ''
-	fullName.value = result?.data?.name?.full_with_opf || ''
-	address.value = result?.data?.address?.value || ''
-
-	if (result?.data?.kpp && result?.data?.inn) {
-		innKpp.value = `${result?.data?.kpp} / ${result?.data?.inn}`
-	} else {
-		innKpp.value = ''
-	}
 })

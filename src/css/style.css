@@ -23,14 +23,6 @@ body {
   position: relative;
 }
 
-input {
-  padding: 10px;
-}
-
-#search {
-  width: 100%;
-}
-
 .main {
   max-width: 500px;
   width: 100%;
@@ -41,32 +33,4 @@ input {
   display: flex;
   flex-direction: column;
   gap: 10px
-}
-
-.res-list {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  left: 0;
-  background: #fff;
-  box-shadow: 2px 1px 10px rgb(139, 139, 139);
-  padding: 0;
-}
-
-.res-list__item {
-  padding: 20px;
-  cursor: pointer;
-  transition: all .3s;
-}
-
-.res-list__item h4 {
-  margin-bottom: 10px;
-}
-
-.res-list__item p {
-  line-height: 20px;
-}
-
-.res-list__item:hover {
-  background: rgb(139, 139, 139);
 }
