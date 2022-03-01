@@ -25,6 +25,10 @@ template.innerHTML = `
       cursor: pointer;
       transition: all .3s;
     }
+
+    .list-item:not(:last-child) {
+      border-bottom: 1px solid #cecece
+    }
     
     .list-item h4 {
       margin-bottom: 10px;
