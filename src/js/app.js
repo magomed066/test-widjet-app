@@ -1,8 +1,11 @@
 import '../css/style.css'
 
+import userCard from './views/userCard'
+
 import state from './state/State'
 import service from './service/Service'
 import resList from './views/ResList'
+import input from './views/Input'
 
 const search = document.getElementById('search')
 const shirtName = document.getElementById('name_short')
